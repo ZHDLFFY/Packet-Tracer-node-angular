@@ -1,0 +1,11 @@
+<div style="text-align: center">
+    <h3>Top Heroes</h3>
+    <a *ngFor="let hero of heroes" class="col-1-4" style="float: left" routerLink="/detail/{{hero.id}}">
+        <p class="card bg-secondary text-white Modification"><b>{{hero.name}}</b></p>
+    </a>
+    <div style="width: 1000px;height:200px;"></div>
+    <div style="width: 300px;">
+        <app-heroes-detail [hero]="selectedHero"></app-heroes-detail>
+    </div>
+
+</div>

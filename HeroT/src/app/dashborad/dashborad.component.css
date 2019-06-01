@@ -1,0 +1,23 @@
+
+    .Modification {
+        width: 150px;
+        height: 150px;
+        line-height: 150px;
+        margin:0px 10px;
+        -webkit-transition: border-radius 3s, -webkit-transform 3s;
+    }
+
+    p:hover {
+        -webkit-animation:myfirst 1000000s;
+        box-shadow: 15px 15px 40px rgb(9, 198, 231) ;
+        font-size: 3em
+    }
+
+ 
+    @-webkit-keyframes myfirst 
+    {      
+    from {width: 200px;height: 200px;}
+
+    }
+
+    
