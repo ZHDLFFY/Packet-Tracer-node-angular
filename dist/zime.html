@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="./COURSE .js"></script>
+    <script src="./STUDENT.js"></script>
+    <title>Document</title>
+    <style>
+        li {
+            list-style-type: none;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 25px;
+            border: 1px solid bisque;
+            margin: 5px;
+            border-radius: 5px;
+            opacity: 0.6;
+            box-shadow: 5px 5px 3px rgb(155, 152, 149);
+            border: 1px solid rgb(110, 109, 108);
+            background-color: rgb(235, 236, 236);
+        }
+        
+        li:hover {
+            opacity: 1.0;
+            font-family: Helvetica;
+            font-weight: 700;
+        }
+        
+        form {
+            width: 100%;
+        }
+        
+        ul {
+            padding: 10px;
+            margin: 5%;
+        }
+        
+        .CourAll {
+            right: 20px;
+            top: 15px;
+            border: 2px solid rgb(108, 110, 110);
+            width: 39%;
+            position: absolute;
+            box-shadow: 10px 10px 5px rgb(155, 152, 149);
+            padding: 5px;
+            background: url(1.gif);
+        }
+        
+        h2 {
+            text-align: center;
+        }
+        
+        .StuaLL {
+            left: 10px;
+            top: 10px;
+            border: 2px solid rgb(108, 110, 110);
+            width: 40%;
+            position: absolute;
+            box-shadow: 10px 10px 5px rgb(155, 152, 149);
+            padding: 5px;
+            background: url(1.gif);
+        }
+        
+        input {
+            background-color: transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="CourAll">
+
+
+        <h2>课程管理</h2>
+        <form>
+            <div class="input-group mb-3 ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">id号</span>
+                </div>
+                <input class="form-control" type="text" id="course_id" placeholder="id">
+            </div>
+            <div class="input-group mb-3 ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">name</span>
+                </div>
+                <input class="form-control" type="text" id="course_name" placeholder="name">
+            </div>
+            <div class="input-group mb-3 ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">changeCourse</span>
+                </div>
+                <input class="form-control" type="text" id="course_change" placeholder="此文本框修改课程是才能用到">
+            </div>
+        </form>
+
+
+
+        <input class="btn btn-success" type="button" value="添加课程" onclick="onAdd()">
+        <input class="btn btn-danger" type="button" id="course_delete" value="删除按钮" onclick="ondelete()">
+        <input class="btn btn-success" type="button" id="course_f_Id" value="id号查找" onclick="FindById()">
+        <input class="btn btn-success" type="button" id="course_f_name" value="名字查找" onclick="FindByName()">
+        <input class="btn btn-success" type="button" id="course_f_name" value="修改课程" onclick="onUpdate()">
+        <input class="btn btn-success" type="button" id="course_f_ALL" value="全部课程" onclick="reFreash()">
+        <ul id="courses">
+
+        </ul>
+    </div>
+
+    <!---------------------------------------------------------------------------------------------------->
+
+    <div class="StuaLL">
+
+        <h2>学生信息</h2>
+        <form>
+            <div class="input-group mb-3 ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">id号</span>
+                </div>
+                <input class="form-control" type="text" id="Stu_id" placeholder="id">
+            </div>
+            <div class="input-group mb-3 ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">name</span>
+                </div>
+                <input class="form-control" type="text" id="Stu_name" placeholder="name">
+            </div>
+
+
+
+
+            <div class="input-group mb-3 ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" data-toggle="dropdown">课程</span>
+
+                </div><input class="form-control" type="text" id="Stu_course" placeholder="courses">
+                <span class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" style="background-color: rgb(201, 198, 198);color: blue;">+</span>
+                <div class="dropdown-menu" style="padding: 5px">
+                    <input type="checkbox">
+                    <input class="form-control" value="Web前端开发">
+                    <input type="checkbox">
+                    <input class="form-control" value="WNS开发">
+                    <input type="checkbox">
+                    <input class="form-control" value="JAVA开发">
+                    <input type="checkbox">
+                    <input class="form-control" value="嵌入开发">
+                </div>
+            </div>
+            <div class="input-group mb-3 ">
+                <div class="input-group-prepend ">
+                    <span class="input-group-text ">成绩</span>
+                </div>
+                <input class="form-control " type="text " id="Stu_fraction" placeholder="fraction">
+            </div>
+        </form>
+
+
+        <div style="text-align: center">
+            <input class="btn btn-success" type="button" value="添加课程" onclick="Stu_Add()">
+            <input class="btn btn-danger" type="button" id="course_delete" value="删除按钮" onclick="Stu_ondelete()">
+            <input class="btn btn-success" type="button" id="course_f_Id" value="id号查找" onclick="Stu_FindById()">
+            <input class="btn btn-success" type="button" id="course_f_name" value="名字查找" onclick="Stu_FindByName()">
+            <br><br>
+            <input class="btn btn-success" type="button" id="course_f_name" value="课程查找" onclick="Stu_FindByCourse()">
+            <input class="btn btn-success" type="button" id="course_f_name" value="分数查找" onclick="Stu_FindByFraction()">
+            <input class="btn btn-success" type="button" id="course_f_name" value="修改课程" onclick="Stu_update()">
+            <input class="btn btn-success" type="button" id="course_f_ALL" value="全部课程" onclick="Stu_reFreash()"></div>
+
+        <ul id="stues">
+
+        </ul>
+    </div>
+
+
+</body>
+
+<script>
+    var courseList = new c2.CourseList();
+    var studentlist = new c1.StudentList();
+    window.onload = function() {
+        loadData();
+        Stu_loadData();
+    }
+
+
+    function FindById() {
+        const idInput = document.getElementById('course_id').value;
+        let GetId = courseList.getById(idInput);
+        const courseUL = document.getElementById('courses');
+        GetId = '<li>' + GetId + '</li>'
+        courseUL.innerHTML = GetId;
+    }
+
+
+    function FindByName() {
+        const nameInput = document.getElementById('course_name').value;
+        let GetId = [];
+        GetId.push(courseList.getByName(nameInput));
+        const courseUL = document.getElementById('courses');
+        GetId = '<li>' + GetId + '</li>'
+        courseUL.innerHTML = GetId;
+
+    }
+
+    function onUpdate() {
+        const idInput = document.getElementById('course_id').value;
+        const nameInput = document.getElementById('course_name').value;
+        const changeInput = document.getElementById('course_change').value;
+        courseList.update(idInput, nameInput);
+        studentlist.update_Stu_Only(nameInput, changeInput);
+        Stu_reFreash();
+        reFreash();
+    }
+
+
+    function ondelete() {
+        const idInput = document.getElementById('course_id').value;
+        courseList.remove(idInput);
+        reFreash();
+    }
+
+    function onAdd() {
+
+        const idInput = document.getElementById('course_id').value;
+        const nameInput = document.getElementById('course_name').value;
+        var course = new c2.Course();
+        course.setId(idInput);
+        course.setName(nameInput);
+        courseList.add(course);
+
+        reFreash();
+
+    }
+
+
+    function loadData() {
+        var courseService = new c2.CourseService();
+        for (let item of courseService.data) {
+            console.log(item);
+            let course = new c2.Course();
+            course.setName(item.name);
+            course.setId(item.id);
+            courseList.add(course);
+        }
+    }
+
+
+
+    function reFreash() {
+        let str = '';
+        for (let course of courseList.getAll()) {
+            str += '<li>' + course.toString() + '</li>'
+        }
+        console.log(str);
+        const courseUL = document.getElementById('courses');
+        courseUL.innerHTML = str;
+    }
+
+
+
+    ////////////////////////以下是学生系统的js//////////////////////////////////////////////////////////
+
+
+    function Stu_loadData() {
+        var studentService = new c1.StudentService();
+        for (let item of studentService.stu_data) {
+            console.log(item);
+            let student = new c1.Student();
+            student.setName(item.name);
+            student.setId(item.id);
+            student.setCourse(item.course);
+            student.setfraction(item.fraction);
+            studentlist.add(student);
+        }
+    }
+
+
+    function Stu_Add() {
+
+        const idInput = document.getElementById('Stu_id').value;
+        const nameInput = document.getElementById('Stu_name').value;
+        const courInput = document.getElementById('Stu_course').value;
+        const fractInput = document.getElementById('Stu_fraction').value;
+        var student = new c1.Student();
+        student.setId(idInput);
+        student.setName(nameInput);
+        student.setCourse(courInput);
+        student.setfraction(fractInput);
+        studentlist.add(student);
+
+        Stu_reFreash();
+
+    }
+
+    function Stu_FindById() {
+        const idInput = document.getElementById('Stu_id').value;
+        let GetId = studentlist.getById(idInput);
+        const stUL = document.getElementById('stues');
+        GetId = '<li>' + GetId + '</li>'
+        stUL.innerHTML = GetId;
+    }
+
+
+    function Stu_FindByName() {
+        const nameInput = document.getElementById('Stu_name').value;
+        let GetId = [];
+        GetId.push(studentlist.getByName(nameInput));
+        const stUL = document.getElementById('stues');
+        GetId = '<li>' + GetId + '</li>'
+        stUL.innerHTML = GetId;
+
+    }
+
+    function Stu_FindByCourse() {
+        const courseInput = document.getElementById('Stu_course').value;
+        let GetId = [];
+        GetId.push(studentlist.getByCourse(courseInput));
+        const stUL = document.getElementById('stues');
+        GetId = '<li>' + GetId + '</li>'
+        stUL.innerHTML = GetId;
+
+    }
+
+
+    function Stu_FindByFraction() {
+        const franInput = document.getElementById('Stu_fraction').value;
+        let GetId = [];
+        GetId.push(studentlist.getByFranction(franInput));
+        const stUL = document.getElementById('stues');
+        GetId = '<li>' + GetId + '</li>'
+        stUL.innerHTML = GetId;
+
+    }
+
+
+    function Stu_update() {
+        const idInput = document.getElementById('Stu_id').value;
+        const nameInput = document.getElementById('Stu_name').value;
+        const courInput = document.getElementById('Stu_course').value;
+        const fractInput = document.getElementById('Stu_fraction').value;
+
+        studentlist.update_Stu(idInput, nameInput, courInput, fractInput);
+        Stu_reFreash();
+    }
+
+
+    function Stu_ondelete() {
+        const idInput = document.getElementById('Stu_id').value;
+        studentlist.remove(idInput);
+        Stu_reFreash();
+    }
+
+    function Stu_reFreash() {
+        let str = '';
+        for (let stu of studentlist.StugetAll()) {
+            str += '<li>' + stu.toString() + '</li>'
+        }
+        console.log(str);
+        const stUL = document.getElementById('stues');
+        stUL.innerHTML = str;
+    }
+</script>
+
+</html>
