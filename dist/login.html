@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <title>login</title>
+</head>
+<style>
+    .InPut {
+        opacity: 0.7;
+        border-radius: 10px;
+        margin: 10px;
+        width: 95%;
+        border: 2px solid rgb(134, 133, 130);
+    }
+    
+    form {
+        text-align: center;
+        width: 30%;
+        position: absolute;
+        left: 30%;
+        top: 15%;
+        background-image: url(3.gif);
+        height: 300px;
+        box-shadow: 10px 5px 5px;
+        border: 2px solid rgb(134, 133, 130);
+    }
+    
+    h6 {
+        color: red;
+        border: 1px solid rgb(50, 233, 224);
+    }
+</style>
+
+<body>
+    <form>
+        <h3>数据库连接测试</h3>
+
+        <input type="text" class="form-control  InPut" placeholder="Email" id="Fname" name="name">
+        <input type="text" class="form-control  InPut" placeholder="Email" id="Fpswd" name="password"><br>
+        <h6 id="errResult"></h6>
+        <button type="button" class="btn btn-success" onclick="Flogin()">LOGIN</button>
+
+    </form>
+
+</body>
+
+<script>
+    function Flogin() {
+        let FL = document.getElementById('Fname').value;
+        let FP = document.getElementById('Fpswd').value;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText) //后台返回的数据
+                const result = JSON.parse(this.responseText); //将一个JSON字符串转化为对象
+                const perr = document.getElementById('errResult');
+                if (result.succ) {
+                    perr.innerHTML = "成功" + result.msg;
+                } else {
+                    perr.innerHTML = "失败" + result.msg;
+                }
+            }
+        };
+        xhttp.open("POST", "/user?name=" + FL + "&password=" + FP, true);
+        xhttp.send();
+
+    }
+</script>
+
+</html>

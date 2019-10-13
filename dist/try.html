@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table {
+            border: 2px solid rebeccapurple；
+        }
+        
+        tr {
+            border: 2px solid rebeccapurple；
+        }
+    </style>
+</head>
+
+<body></body>
+<input type="text" id="h" value="4">
+<input type="text" id="l" value="4">
+<button οnclick="add()">生成</button>
+<div id="div1"></div>
+
+
+</body>
+<script>
+    window.onload = init();
+
+    function init() {
+        add();
+    }
+
+    function add() {
+        var h = document.getElementById("h").value;
+        var l = document.getElementById("l").value;
+        var tab = "<table>"; //通过 += 的方式将代码放到一个变量里，实现表单的形成。
+        for (i = 0; i < h; i++) {
+            tab += "<tr>";
+            for (j = 0; j < l; j++) {
+                tab += "<td>aaaaaa</td>";
+            }
+            tab += "</tr>";
+        }
+        tab += "</table>";
+        var divv = document.getElementById("div1");
+        divv.innerHTML = tab; //把table代码设置到div里
+    }
+</script>
+
+</html>
