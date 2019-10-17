@@ -1,0 +1,26 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+    <h1>
+        Welcome to {{ title }}!
+    </h1>
+    <table class="table table-hover">
+        <thead>
+            <th>#</th>
+            <th>id</th>
+            <th>status</th>
+            <th>customer_status</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let led of leds$|async;let i=index">
+                <td>{{i}}</td>
+                <td>{{led.id}}</td>
+                <td style="color: red;">{{led.status===0?'关':'开'}}</td>
+                <td>
+                    <input type="button" class="btn btn-primary" value="{{led.customer_status===0?'开':'关'}}" (click)="changeLed(led)"> --{{led.customer_status}}--
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<router-outlet></router-outlet>

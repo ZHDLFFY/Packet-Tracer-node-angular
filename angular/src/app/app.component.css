@@ -1,0 +1,13 @@
+div {
+    width: 50%;
+    left: 25%;
+    top: 5%;
+    position: absolute;
+    box-shadow: rgb(185, 218, 185) 15px 10px 10px;
+    border: 2px solid rgb(201, 201, 201);
+    background-image: url(../1.gif);
+}
+
+th {
+    background-color: rgb(182, 182, 216);
+}
